@@ -7,7 +7,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 @Service
-public class ProductService {
+public class  ProductService {
     @Autowired
     private ProductRepository productRepository;
     public products saveProduct(products product) {  //to save products...
