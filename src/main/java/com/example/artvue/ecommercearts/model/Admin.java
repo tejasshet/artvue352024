@@ -1,9 +1,11 @@
 package com.example.artvue.ecommercearts.model;
 
+import jakarta.persistence.Entity;
+
 import jakarta.persistence.*;
 
 @Entity
-@Table(name = "admin")
+@Table(name = "admins")
 public class Admin {
 
     @Id
@@ -11,21 +13,19 @@ public class Admin {
     @Column(name = "admin_id")
     private Long adminId;
 
-    @Column(name = "name")
-    private String name;
-
     @Column(name = "username", nullable = false, unique = true)
     private String username;
 
     @Column(name = "password", nullable = false)
     private String password;
 
+    // Constructors, getters, setters, and other methods
+
     public Admin() {
         // Default constructor
     }
 
-    public Admin(String name, String username, String password) {
-        this.name = name;
+    public Admin(String username, String password) {
         this.username = username;
         this.password = password;
     }
@@ -38,14 +38,6 @@ public class Admin {
 
     public void setAdminId(Long adminId) {
         this.adminId = adminId;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
     }
 
     public String getUsername() {
@@ -71,10 +63,8 @@ public class Admin {
     public String toString() {
         return "Admin{" +
                 "adminId=" + adminId +
-                ", name='" + name + '\'' +
                 ", username='" + username + '\'' +
                 ", password='" + password + '\'' +
                 '}';
     }
-
 }

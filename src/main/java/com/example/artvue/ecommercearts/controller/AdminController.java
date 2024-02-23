@@ -1,13 +1,10 @@
 package com.example.artvue.ecommercearts.controller;
-
+import com.example.artvue.ecommercearts.model.Admin;
 import com.example.artvue.ecommercearts.service.AdminService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/api/admins")
@@ -20,16 +17,14 @@ public class AdminController {
         this.adminService = adminService;
     }
 
-    @PostMapping("/authenticate")
-    public ResponseEntity<String> authenticateAdmin(
-            @RequestParam String username,
-            @RequestParam String password) {
-        boolean isAuthenticated = adminService.verifyAdminCredentials(username, password);
+    @PostMapping("/auth")
+    public ResponseEntity<String> loginAdmin(@RequestBody Admin admin) {
+        boolean isAuthenticated = adminService.verifyAdminCredentials(admin.getUsername(), admin.getPassword());
 
         if (isAuthenticated) {
-            return new ResponseEntity<>("Admin authentication successful", HttpStatus.OK);
+            return new ResponseEntity<>("Admin login successful", HttpStatus.OK);
         } else {
-            return new ResponseEntity<>("Admin authentication failed", HttpStatus.UNAUTHORIZED);
+            return new ResponseEntity<>("Admin login failed", HttpStatus.UNAUTHORIZED);
         }
     }
 }
