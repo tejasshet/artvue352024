@@ -1,4 +1,5 @@
 package com.example.artvue.ecommercearts.service;
+
 import com.example.artvue.ecommercearts.model.Admin;
 import com.example.artvue.ecommercearts.repository.AdminRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -6,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class AdminService {
+
     private final AdminRepository adminRepository;
 
     @Autowired
@@ -13,7 +15,6 @@ public class AdminService {
         this.adminRepository = adminRepository;
     }
 
-    // Service method to verify admin credentials
     public boolean verifyAdminCredentials(String username, String password) {
         Admin admin = adminRepository.findByUsername(username);
 
